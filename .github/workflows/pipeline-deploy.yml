@@ -73,5 +73,5 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} #to upload the artifact to the correct release each time
           asset_path: ./${{ github.sha }}.zip #runner path
           asset_name: source_code_with_libraries.zip #name that will appear in the release page
-          asset_content_type: application/zip #needed to identify the type of file
+          asset_content_type: application/zip #needed to identify the type of file#
       
