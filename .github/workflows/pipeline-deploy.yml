@@ -41,10 +41,10 @@ jobs:
             cd function
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact                    #Upload the .zip file named using the last commit SHA to the repo hosted space in GitHub
-        uses: actions/upload-artifact@v3          # Uses the action upload-artifact https://github.com/marketplace/actions/upload-a-build-artifact
+        uses: actions/upload-artifact@v3          #Uses the action upload-artifact https://github.com/marketplace/actions/upload-a-build-artifact
         with:
           name: zipped-bundle
-          path: ${{ github.sha }}.zip             # The path where the artifact is uploaded, this repo identiefied by its SHA token
+          path: ${{ github.sha }}.zip             #The path where the artifact is uploaded, this repo identiefied by its SHA token
         
   publish:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
         id: create_release # add an ID for this step that can be utilize with the upload-release-asset action
         uses: actions/create-release@v1 
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.github_token }} #This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ github.run_number }} #the tag name is the run number
           release_name: Release from ${{ github.run_number }} #use the run sequential number
@@ -73,5 +73,5 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} #to upload the artifact to the correct release each time
           asset_path: ./${{ github.sha }}.zip #runner path
           asset_name: source_code_with_libraries.zip #name that will appear in the release page
-          asset_content_type: application/zip # needed to identify the type of file
+          asset_content_type: application/zip #needed to identify the type of file
       
