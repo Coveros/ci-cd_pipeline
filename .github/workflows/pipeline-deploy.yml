@@ -6,7 +6,7 @@ on: [push]
 jobs:
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #this is a GitHub Ubuntu runner
     steps: 
       - name: Check out code
         uses: actions/checkout@v3 #name of a public GH action for code checkout available at https://github.com/marketplace/actions/checkout
