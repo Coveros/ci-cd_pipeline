@@ -35,7 +35,7 @@ jobs:
         run: |
             cd function
             python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi # uses the requirements.txt paramaters
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi # installs the libraries listed in the requirements.txt (not necessary, just to fill space for the build)
       - name: Zip bundle
         run: |
             cd function
