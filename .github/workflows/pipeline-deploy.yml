@@ -57,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.github_token }} #This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ github.run_number }} #the tag name is the run number
-          release_name: Release from ${{ github.run_number }} #use the run sequential number
+          release_name: Release from run "#" ${{ github.run_number }} #use the run sequential number
           body: New release for ${{ github.sha }}. Release notes can be found in the docs. # add some text to the release for context
           draft: false
           prerelease: false
