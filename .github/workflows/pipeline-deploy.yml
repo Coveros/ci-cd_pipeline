@@ -40,7 +40,7 @@ jobs:
         run: |
             cd function
             zip -r ../${{ github.sha }}.zip .
-      - name: Archive artifact
+      - name: Archive artifact                    #Upload the .zip file named using the last commit SHA to the repo hosted space in GitHub
         uses: actions/upload-artifact@v3
         with:
           name: zipped-bundle
