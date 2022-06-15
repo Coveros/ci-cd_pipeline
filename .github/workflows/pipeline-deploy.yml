@@ -51,7 +51,7 @@ jobs:
     needs: build # publish job will run only if build job is successful
     steps:
       - name: create release
-        id: create-release # add an ID for this step that can be utilize with the upload-release-asset action
+        id: create_release # add an ID for this step that can be utilize with the upload-release-asset action
         uses: actions/create-release@v1 
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by Actions, you do not need to create your own token
