@@ -1,3 +1,3 @@
 # Build information
 PyGithub==1.55 # Python library to access the GitHub REST API.
-boto3==1.17.96 # Python API for AWS integration with GitHub
+# boto3==1.17.96 # Python API for AWS integration with GitHub
