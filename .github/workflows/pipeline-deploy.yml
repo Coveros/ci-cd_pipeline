@@ -11,14 +11,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3 #name of a public GH action for code checkout available at https://github.com/marketplace/actions/checkout
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4 #name of a public GH action for python installation available at https://github.com/marketplace/actions/setup-python
         with:
           python-version: 3.8
       - name: Install libraries
-        run: pip install flake8
+        run: pip install flake8 #install flake8 library
       - name: Lint with flake8
         run: |
-            cd function
+            cd function # executes the code lint inside the function folder (parameters are irrelevant for this lab)
             flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
             flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   build:
@@ -26,16 +26,16 @@ jobs:
     needs: lint
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
       - name: Install libraries
         run: |
             cd function
             python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi 
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi # uses the requirements.txt paramaters
       - name: Zip bundle
         run: |
             cd function
