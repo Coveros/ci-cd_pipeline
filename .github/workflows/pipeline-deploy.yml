@@ -1,4 +1,6 @@
 name: Deploy Lambda Function
+
+# on push, execute a lint job
 on: [push]
 
 jobs:
@@ -7,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3 #name of a public GH action for code checkout available at https://github.com/marketplace/actions/checkout
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
       - name: Install libraries
