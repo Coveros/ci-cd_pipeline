@@ -41,21 +41,21 @@ jobs:
             cd function
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact                    #Upload the .zip file named using the last commit SHA to the repo hosted space in GitHub
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3          # Uses the action upload-artifact https://github.com/marketplace/actions/upload-a-build-artifact
         with:
           name: zipped-bundle
-          path: ${{ github.sha }}.zip
+          path: ${{ github.sha }}.zip             # The path where the artifact is uploaded, this repo identiefied by its SHA token
         
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: create release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1 
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.run_number }}
-          release_name: Release from ${{ github.run_number }}
-          body: New release for ${{ github.sha }}. Release notes can be found in the docs.
+          tag_name: ${{ github.run_number }} #the tag name is the run number
+          release_name: Release from ${{ github.run_number }} #use the run sequential number
+          body: New release for ${{ github.sha }}. Release notes can be found in the docs. # add some text to the release for context
           draft: false
           prerelease: false
