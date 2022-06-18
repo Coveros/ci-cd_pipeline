@@ -4,7 +4,7 @@ name: Deploy Lambda Function to AWS
 on: 
   push:
     branches:
-      - main
+      - aws # add the branch you are working on
 
 jobs:
 
