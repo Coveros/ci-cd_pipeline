@@ -60,7 +60,7 @@ jobs:
           aws-region: us-east-1
       - name: Update function code
         run: |
-            aws lambda update-function-code \ #aws command CLI to update the Lambda function
+            aws lambda update-function-code \
               --function-name gh-function \
               --s3-bucket s3://whateverbucket23-49/ \
               --s3-key ${{ github.repository }}/${{ github.sha }}.zip \
