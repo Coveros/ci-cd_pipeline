@@ -1,4 +1,4 @@
-name: Deploy Lambda Function
+name: Deploy Lambda Function to AWS
 
 # trigger on all push events to main branch
 on: 
@@ -46,4 +46,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Upload to S3
-        run: aws s3 cp ${{ github.sha }}.zip s3://whateverbucket23-49/${{ github.repository }}/${{ github.sha }}.zip
+        run: aws s3 cp ${{ github.sha }}.zip s3://whateverbucket23-49/${{ github.repository }}/${{ github.sha }}.zip # Add the S3 bucket name from your AWS account
