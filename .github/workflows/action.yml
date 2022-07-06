@@ -4,7 +4,7 @@ name: Deploy Lambda Function to AWS
 on: 
   push:
     branches:
-      - sca # specify the working branch
+      - sca # specifies the working branch. You need to change this value every time you switch branch, or you can add multiple branches.
 
 jobs:
 
