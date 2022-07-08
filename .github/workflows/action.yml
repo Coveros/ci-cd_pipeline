@@ -80,19 +80,20 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Create test function # uses the AWS CLI "create-function" command to create a Lambda function named "test-function" https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
+# uses the AWS CLI "create-function" command to create a Lambda function named "test-function" https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
+      - name: Create test function 
         run: |
              aws lambda create-function --function-name test-function-${{ matrix.input }} \  
               --code S3Bucket=whateverbucket23-49,S3Key=${{ github.repository }}/${{ github.sha }}.zip \
               --handler lambda_function.lambda_handler --runtime python3.8 \
-              --role arn:aws:iam::670776653280:role/lambda-role 
+              --role arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/lambda-role
       - name: Wait 30 seconds
         run: sleep 30
       - name: Destroy test function
         if: ${{ always() }}
         run: |
             aws lambda delete-function --function-name test-function
-#deploy job
+
   deploy:
     runs-on: ubuntu-latest
     needs: upload
