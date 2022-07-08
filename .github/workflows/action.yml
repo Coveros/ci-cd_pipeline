@@ -83,7 +83,10 @@ jobs:
 # uses the AWS CLI "create-function" command to create a Lambda function named "test-function" https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
       - name: Create test function 
         run: |
-             aws lambda create-function --function-name test-function --code S3Bucket=whateverbucket23-49,S3Key=${{ github.repository }}/${{ github.sha }}.zip --handler lambda_function.lambda_handler --runtime python3.8 --role "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/lambda-role"
+             aws lambda create-function --function-name test-function \
+              --code S3Bucket=whateverbucket23-49,S3Key=${{ github.repository }}/${{ github.sha }}.zip \
+              --handler lambda_function.lambda_handler --runtime python3.8 \
+              --role "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/lambda-role"
       - name: Wait 30 seconds #added this step to pause the workflow execution for 30 seconds to allow time to observe the function creation and deletion from the browser
         run: sleep 30 
       - name: Destroy test function
