@@ -4,7 +4,7 @@ name: Deploy Lambda Function to AWS
 on: 
   push:
     branches:
-      - test # specifies the working branch. You need to change this value every time you switch branch, or you can add multiple branches.
+      - staging # specifies the working branch. You need to change this value every time you switch branch, or you can add multiple branches.
 
 jobs:
 
@@ -87,12 +87,12 @@ jobs:
               --code S3Bucket=whateverbucket23-49,S3Key=${{ github.repository }}/${{ github.sha }}.zip \
               --handler lambda_function.lambda_handler --runtime python3.8 \
               --role "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/lambda-role"
-      - name: Wait 30 seconds #added this step to pause the workflow execution for 30 seconds to allow time to observe the function creation and deletion from the browser
-        run: sleep 30 
+      - name: Wait 10 seconds #added this step to pause the workflow execution for 30 seconds to allow time to observe the function creation and deletion from the browser
+        run: sleep 10 
       - name: Destroy test function
-        if: ${{ always() }}
+        if: ${{ always() }} # the function always() will execute the deletion of the Lambda function even if the test fails, to prevent cluttering the S3 bucket.
         run: |
-            aws lambda delete-function --function-name test-function
+            aws lambda delete-function --function-name test-function # this 
 
   deploy:
     runs-on: ubuntu-latest
